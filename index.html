@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rimsha Saqib · Forever Love</title>
+  <!-- Google Font & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(145deg, #fce4ec 0%, #f8bbd0 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px;
+    }
+
+    .card {
+      max-width: 950px;
+      width: 100%;
+      background: rgba(255, 240, 245, 0.7);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-radius: 60px 60px 40px 40px;
+      box-shadow: 0 30px 50px rgba(180, 60, 90, 0.25), 0 10px 25px rgba(0,0,0,0.1);
+      padding: 30px 30px 45px;
+      border: 2px solid rgba(255, 200, 220, 0.5);
+      text-align: center;
+    }
+
+    /* header */
+    .name-title {
+      font-size: 3.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #7a2e4a;
+      text-shadow: 4px 4px 0 #f8d7e0, 0 8px 20px rgba(200, 80, 120, 0.3);
+      margin-bottom: 0.1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .name-title i {
+      font-size: 3rem;
+      color: #d4527c;
+      animation: pulse-heart 1.8s infinite;
+    }
+    .sub-love {
+      font-size: 1.2rem;
+      font-weight: 500;
+      background: #e8a0b8;
+      display: inline-block;
+      padding: 0.3rem 2rem;
+      border-radius: 60px;
+      color: #2d1320;
+      letter-spacing: 2px;
+      box-shadow: inset 0 0 0 2px #ffdae6;
+      margin-bottom: 20px;
+    }
+
+    /* photo frame */
+    .photo-frame {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffb3c6, #ff8aa1);
+      margin: 10px auto 20px;
+      padding: 8px;
+      box-shadow: 0 15px 30px rgba(200, 70, 110, 0.4);
+      border: 3px solid #fff3f7;
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      background: #fce4ec;
+    }
+
+    /* ---------- PARAGRAPH (animated) ---------- */
+    .para-wrapper {
+      margin: 20px 0 25px;
+      overflow: hidden;
+    }
+
+    .love-paragraph {
+      background: rgba(255, 235, 240, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border-radius: 40px 40px 20px 20px;
+      padding: 20px 25px;
+      border: 1.5px solid #ffc1d4;
+      box-shadow: 0 8px 18px rgba(200, 70, 110, 0.12);
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #3e1e2b;
+      line-height: 1.8;
+      text-align: center;
+      transform: scale(0.9);
+      opacity: 0;
+      transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: 0;
+      padding: 0 25px;
+      margin: 0 auto;
+      overflow: hidden;
+      visibility: hidden;
+    }
+
+    .love-paragraph.open {
+      transform: scale(1);
+      opacity: 1;
+      max-height: 600px;  /* enough for text */
+      padding: 20px 25px;
+      visibility: visible;
+      margin: 10px auto;
+    }
+
+    .love-paragraph i {
+      color: #c94f73;
+      margin: 0 4px;
+    }
+
+    .btn-toggle-para {
+      background: #d4527c;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 60px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: white;
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      box-shadow: 0 8px 18px rgba(190, 60, 100, 0.3);
+      cursor: pointer;
+      transition: 0.25s;
+      border: 2px solid #ffeef3;
+      margin: 6px 0 0;
+    }
+    .btn-toggle-para i {
+      font-size: 1.5rem;
+      color: #fff5f8;
+    }
+    .btn-toggle-para:hover {
+      background: #b64169;
+      transform: scale(1.02);
+    }
+
+    /* ---------- PHOTO GALLERY (yadgar photos) ---------- */
+    .gallery-section {
+      margin: 35px 0 25px;
+    }
+    .gallery-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      color: #7a2e4a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+    .gallery-title i {
+      color: #d4527c;
+      font-size: 2rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 18px;
+      justify-items: center;
+    }
+
+    .gallery-item {
+      width: 100%;
+      max-width: 170px;
+      aspect-ratio: 1/1;
+      border-radius: 30px 10px 30px 10px;
+      background: #ffdce8;
+      box-shadow: 0 12px 20px rgba(150, 50, 80, 0.2);
+      border: 3px solid #fff5f9;
+      overflow: hidden;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #5f2b3e;
+      font-weight: 600;
+      position: relative;
+      background: #fecfdf;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* fallback text if image missing */
+    .gallery-item .placeholder-icon {
+      font-size: 3.2rem;
+      color: #b3415e;
+      opacity: 0.6;
+    }
+    .gallery-item:hover {
+      transform: scale(1.03) rotate(-1deg);
+      border-color: #d66a8a;
+      box-shadow: 0 18px 28px rgba(180, 50, 90, 0.3);
+    }
+
+    /* ---------- CLICKABLE LOVE CARDS (forever, kisses, care) ---------- */
+    .love-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px 25px;
+      margin: 30px 0 15px;
+    }
+
+    .love-item {
+      background: rgba(255, 230, 240, 0.7);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      padding: 14px 26px;
+      border-radius: 60px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #531d32;
+      border: 2px solid #ffbed4;
+      box-shadow: 0 8px 14px rgba(170, 60, 100, 0.15);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: 0.25s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .love-item i {
+      font-size: 2rem;
+      color: #d6456f;
+    }
+    .love-item:hover {
+      transform: scale(1.05) translateY(-4px);
+      background: #ffe2ed;
+      border-color: #d66a8a;
+      box-shadow: 0 14px 24px rgba(190, 60, 100, 0.25);
+    }
+    .love-item:active {
+      transform: scale(0.95);
+    }
+
+    /* popup for love cards */
+    .popup-message {
+      margin: 12px auto 0;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #602c42;
+      min-height: 2.8rem;
+      transition: 0.3s;
+    }
+    .popup-message span {
+      background: #ffe2ed;
+      padding: 0.5rem 1.8rem;
+      border-radius: 60px;
+      box-shadow: 0 4px 12px rgba(200,70,110,0.15);
+      display: inline-block;
+    }
+
+    /* quote */
+    .quote-block {
+      background: #ffd9e6b3;
+      border-radius: 60px 20px 60px 20px;
+      padding: 16px 15px;
+      margin: 25px 0 20px;
+      border-left: 6px solid #d6456f;
+      border-right: 6px solid #d6456f;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #371d27;
+    }
+
+    /* footer */
+    .footer-note {
+      margin-top: 30px;
+      font-weight: 300;
+      color: #5f3343;
+      border-top: 2px dashed #e8a0b8;
+      padding-top: 22px;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .footer-note span i {
+      margin-right: 8px;
+      color: #c54269;
+    }
+
+    @keyframes pulse-heart {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 550px) {
+      .card { padding: 20px 15px; }
+      .name-title { font-size: 2.6rem; }
+      .name-title i { font-size: 2rem; }
+      .love-item { font-size: 1rem; padding: 10px 18px; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .btn-toggle-para { font-size: 1rem; padding: 10px 20px; }
+      .love-paragraph { font-size: 1rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="card">
+
+  <!-- header -->
+  <div class="name-title">
+    <i class="fas fa-heart"></i> Rimsha Saqib <i class="fas fa-heart" style="animation-delay:0.6s;"></i>
+  </div>
+  <div class="sub-love"><i class="fas fa-infinity" style="margin-right: 8px;"></i> love couple <i class="fas fa-infinity" style="margin-left: 8px;"></i></div>
+
+  <!-- photo -->
+  <div class="photo-frame">
+    <img src="rimsha.jpg.jpg" alt="Rimsha" />
+  </div>
+
+  <!-- ====== ANIMATED PARAGRAPH ====== -->
+  <div class="para-wrapper">
+    <button class="btn-toggle-para" id="toggleParaBtn">
+      <i class="fas fa-heart"></i>  Rimsha ka khaas paighaam  <i class="fas fa-heart"></i>
+    </button>
+    <div class="love-paragraph" id="loveParagraph">
+      <i class="fas fa-quote-left"></i> 
+      Happy birthday Meri Jan 😚😚 mein tumse boht ziyada Pyar krta hu. Sab se ziyada Tum Meri zindigi ki sab se behtreen dost ho ho partner ho bivi ho ❤️❤️or mein tumahey lye kuvh b krny ko tiyar huh 😚😚🤭😚🤭😚🤭main hamesha tumahey sath rhu ga ❤️❤️❤️
+      <i class="fas fa-quote-right"></i>
+    </div>
+  </div>
+
+  <!-- ====== YADGAR PHOTOS (gallery) ====== -->
+  <div class="gallery-section">
+    <div class="gallery-title">
+      <i class="fas fa-camera-retro"></i>  Yadgar Lamhey  <i class="fas fa-camera-retro"></i>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
+      <!-- each item: you can replace src with actual images -->
+      <div class="gallery-item"><img src="rimsha1.jpg.jpg" alt="Memory 1" /></div>
+
+      <div class="gallery-item"><img src="rimsha2.jpg.jpg" alt="Memory 2" /></div>
+
+      <div class="gallery-item"><img src="rimsha3.jpg.jpg" alt="Memory 3" /></div>
+
+      <div class="gallery-item"><img src="rimsha4.jpg.jpg" alt="Memory 4" /></div>
+    </div>
+  </div>
+
+  <!-- ====== CLICKABLE LOVE CARDS (forever, kisses, care) ====== -->
+  <div class="love-grid">
+    <div class="love-item" data-msg="💞 Forever & always, Rimsha ❤️ Saqib 💞">
+      <i class="fas fa-heart"></i> Forever
+    </div>
+    <div class="love-item" data-msg="😘 Bohat sare kisses for you, meri jaan 😘">
+      <i class="fas fa-kiss-wink-heart"></i> Kisses
+    </div>
+    <div class="love-item" data-msg="🤗 Care, support, love – I'm always here for you 🤗">
+      <i class="fas fa-hand-holding-heart"></i> Care
+    </div>
+  </div>
+
+  <!-- popup message area for love cards -->
+  <div class="popup-message" id="popupMessage">
+    <span>❤️ click karo aur pyar dekho ❤️</span>
+  </div>
+
+  <!-- quote -->
+  <div class="quote-block">
+    <i class="fas fa-crown"></i>  “Rimsha & Saqib — a love written in the stars”  <i class="fas fa-crown"></i>
+  </div>
+
+  <!-- footer -->
+  <div class="footer-note">
+    <span><i class="fas fa-arrow-right"></i> 14 Feb · forever </span>
+    <span><i class="fas fa-music"></i> our song </span>
+    <span><i class="fas fa-heart"></i> Rimsha ❤️ Saqib </span>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // ---------- PARAGRAPH TOGGLE (animation) ----------
+    const paraBtn = document.getElementById('toggleParaBtn');
+    const para = document.getElementById('loveParagraph');
+
+    paraBtn.addEventListener('click', function() {
+      para.classList.toggle('open');
+      // change button icon/text (optional)
+      const isOpen = para.classList.contains('open');
+      paraBtn.innerHTML = isOpen 
+        ? '<i class="fas fa-heart"></i>  Chhupao paighaam  <i class="fas fa-heart"></i>'
+        : '<i class="fas fa-heart"></i>  Rimsha ka khaas paighaam  <i class="fas fa-heart"></i>';
+    });
+
+    // auto open on load with a tiny delay (shows animation)
+    setTimeout(() => {
+      para.classList.add('open');
+      paraBtn.innerHTML = '<i class="fas fa-heart"></i>  Chhupao paighaam  <i class="fas fa-heart"></i>';
+    }, 400);
+
+    // ---------- CLICKABLE LOVE CARDS (forever, kisses, care) ----------
+    const loveItems = document.querySelectorAll('.love-item');
+    const popup = document.getElementById('popupMessage');
+
+    loveItems.forEach(item => {
+      item.addEventListener('click', function(e) {
+        const msg = this.getAttribute('data-msg') || '❤️ Love you forever ❤️';
+        popup.innerHTML = `<span>${msg}</span>`;
+
+        // also create floating hearts effect
+        createFloatingHearts(e);
+      });
+    });
+
+    // ---------- FLOATING HEARTS (fun effect) ----------
+    function createFloatingHearts(event) {
+      const card = document.querySelector('.card');
+      const rect = card.getBoundingClientRect();
+      // use mouse position or random
+      let x, y;
+      if (event && event.clientX) {
+        x = ((event.clientX - rect.left) / rect.width) * 100;
+        y = ((event.clientY - rect.top) / rect.height) * 100;
+      } else {
+        x = 30 + Math.random() * 40;
+        y = 30 + Math.random() * 40;
+      }
+      for (let i = 0; i < 5; i++) {
+        const heart = document.createElement('i');
+        heart.className = 'fas fa-heart';
+        heart.style.position = 'absolute';
+        heart.style.color = ['#d6456f', '#e8809e', '#f5a3ba', '#c93f65', '#ffb3c6'][i % 5];
+        heart.style.fontSize = (18 + Math.random() * 28) + 'px';
+        heart.style.left = Math.min(90, Math.max(5, x + (Math.random() - 0.5) * 20)) + '%';
+        heart.style.top = Math.min(80, Math.max(5, y + (Math.random() - 0.5) * 20)) + '%';
+        heart.style.opacity = '0.9';
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = '999';
+        heart.style.transition = 'all 1.8s ease-out';
+        heart.style.transform = 'scale(0.8)';
+        card.appendChild(heart);
+
+        setTimeout(() => {
+          heart.style.transform = `translateY(-${50 + Math.random() * 70}px) scale(1.7)`;
+          heart.style.opacity = '0';
+        }, 40);
+
+        setTimeout(() => {
+          if (heart.parentNode) heart.remove();
+        }, 2200);
+      }
+    }
+
+    // also trigger hearts on gallery hover (just for fun)
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('mouseenter', function(e) {
+        createFloatingHearts(e);
+      });
+    });
+
+  })();
+</script>
+</body>
+</html>
